@@ -1,0 +1,821 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 22 abr. 2026, 00:12:44
+    Author     : fabrisio
+*/
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+:root {
+  --primary: #2c3e50; --secondary: #3498db; --accent: #c0392b;
+  --light: #f4f5f7; --dark: #1a252f; --text: #222; --border: #bdc3c7;
+  --shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--light); min-height: 100vh; display: flex; flex-direction: column; }
+a { text-decoration: none; color: inherit; transition: color 0.3s; }
+ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; object-fit: cover; }
+
+/* =========================================
+   2. LAYOUT & ESTRUCTURA BASE
+   ========================================= */
+.container, main { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+main { flex: 1; padding: 2rem 0; }
+
+/* Header & Nav Base */
+header { background: var(--primary); color: #fff; padding: 1rem 0; border-bottom: 3px solid var(--secondary); }
+header .container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex: 1;
+}
+.logo { display: flex; align-items: center; gap: 1rem; }
+nav ul { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.user-profile-nav {
+    margin-left: auto; /* Esto lo empuja a la derecha */
+    display: flex; 
+    align-items: center; 
+    gap: 0.6rem;
+    padding: 0.4rem 0.8rem; 
+    background: rgba(255,255,255,0.15);
+    border-radius: 50px; 
+    transition: all 0.3s ease; 
+    cursor: default;
+}
+nav > ul > li { position: relative; }
+nav a { padding: 0.5rem 1rem; font-weight: bold; transition: background 0.3s, transform 0.2s; display: block; border-radius: 4px; }
+nav a:hover, nav a.active { background: var(--secondary); color: #fff; transform: translateY(-2px); }
+
+
+/* Footer & Avisos */
+.site-footer-frame { width: 100%; min-height: 150px; border: none; display: block; background: var(--dark); }
+.aviso-catalogo, .aviso { background: var(--accent); color: #fff; padding: 0.5rem; font-weight: bold; margin-top: 1rem; }
+
+/* =========================================
+   3. COMPONENTES GLOBALES
+   ========================================= */
+.btn, button, .btn-ver, .btn-tabla, .btn-enviar, .btn-cta, .btn-mostrar-todos, .btn-reservar, .btn-ver-libro {
+  display: inline-block; background: var(--secondary); color: #fff; padding: 0.6rem 1rem;
+  border: none; cursor: pointer; font-weight: bold; transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  text-align: center; border-radius: 4px;
+}
+.btn:hover, button:hover { background: var(--primary); transform: scale(1.03); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+
+.card, .card-libro, .card-mv, .contacto-card, .sidebar, .sidebar-catalogo, .card-autor, .card-genero {
+  background: #fff; padding: 1rem; border: 1px solid var(--border); box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #fff; overflow-x: auto; display: block; }
+th { background: var(--primary); color: #fff; padding: 0.8rem; text-align: left; }
+td { padding: 0.8rem; border-bottom: 1px solid var(--border); }
+
+input, textarea, select { width: 100%; padding: 0.5rem; margin: 0.3rem 0; border: 1px solid var(--border); font-family: inherit; transition: border-color 0.3s, box-shadow 0.3s; }
+input:focus, textarea:focus { outline: none; border-color: var(--secondary); box-shadow: 0 0 0 2px rgba(52,152,219,0.2); }
+fieldset { border: 1px solid var(--border); padding: 0.8rem; margin: 1rem 0; }
+legend { font-weight: bold; color: var(--primary); }
+
+/* =========================================
+   4. NAVEGACIÓN (DROPDOWNS + USUARIO)
+   ========================================= */
+.dropdown-menu {
+  display: none; position: absolute; top: 100%; left: 0;
+  background: var(--primary); min-width: 200px;
+  box-shadow: var(--shadow); border-radius: 8px;
+  z-index: 1000; flex-direction: column; gap: 0; margin-top: 0rem;
+}
+.dropdown:hover .dropdown-menu { display: flex; animation: fadeIn 0.3s ease; }
+.dropdown-menu a { padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); border-radius: 0; transform: none !important; }
+.dropdown-menu a:hover { background: var(--secondary); padding-left: 1.3rem; }
+.dropdown > a::after { content: '▼'; font-size: 0.8rem; margin-left: 0.3rem; }
+
+.user-profile-nav {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.4rem 0.8rem; background: rgba(255,255,255,0.15);
+  border-radius: 50px; margin-left: auto; transition: all 0.3s ease; cursor: default;
+}
+.user-profile-nav:hover { background: rgba(255,255,255,0.25); transform: translateY(-1px); }
+.user-profile-nav .avatar-circle {
+  width: 32px; height: 32px; background: var(--accent); color: #fff;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: bold; font-size: 0.85rem; border: 2px solid #fff;
+}
+.user-profile-nav .user-name { color: #fff; font-weight: 500; font-size: 0.9rem; white-space: nowrap; }
+
+/* Dropdown para User Profile Nav */
+.user-profile-nav {
+    position: relative; /* Necesario para posicionar el dropdown */
+    cursor: pointer;
+}
+
+.user-profile-nav .dropdown-menu {
+    top: 100%;
+    right: 0;
+    left: auto; /* Alinear a la derecha */
+    min-width: 180px;
+    margin-top: 0rem;
+}
+
+.user-profile-nav:hover .dropdown-menu {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+/* =========================================
+   5. PÁGINAS ESPECÍFICAS
+   ========================================= */
+/* Index */
+.banner { background: linear-gradient(135deg, var(--secondary), var(--primary)); color: #fff; text-align: center; padding: 3rem 1rem; }
+.banner h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+.video-promo { text-align: center; margin: 2rem 0; }
+
+/* Audio Ambiente - CSS Puro */
+.audio-ambiente {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(44, 62, 80, 0.95);
+  padding: 0.4rem 0.8rem;
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+}
+.audio-control {
+  width: 200px;
+  height: 32px;
+  border-radius: 20px;
+  filter: brightness(0.95);
+}
+.audio-control::-webkit-media-controls-panel {
+  background-color: var(--secondary);
+}
+.audio-label {
+  color: #fff;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .audio-ambiente {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    justify-content: center;
+    border-radius: 0;
+    padding: 0.5rem;
+  }
+  .audio-control { width: 180px; }
+  .audio-label { display: none; }
+}
+
+/* Catálogo (Grid) */
+.catalogo-container { display: grid; grid-template-columns: 220px 1fr; gap: 1.5rem; margin: 2rem auto; align-items: start; }
+.sidebar-catalogo { position: sticky; top: 1rem; }
+.grid-libros { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+.card-libro { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-height: 320px; }
+.card-libro img { margin: 0 auto 0.8rem; transition: transform 0.3s; }
+.card-libro:hover img { transform: scale(1.05) rotate(2deg); }
+.card-libro .btn-ver { margin-top: auto; width: 100%; }
+.paginacion { text-align: center; margin: 2rem 0; }
+.paginacion a { padding: 0.5rem; margin: 0 0.3rem; border: 1px solid var(--border); display: inline-block; transition: background 0.3s, color 0.3s; }
+.paginacion a:hover, .paginacion a.active { background: var(--secondary); color: #fff; border-color: var(--secondary); }
+
+/* Contacto (Grid) */
+.contacto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0; }
+.redes-contacto a { display: inline-block; margin: 0.3rem; padding: 0.4rem 0.8rem; background: #eee; border-radius: 4px; transition: transform 0.2s, background 0.3s; }
+.redes-contacto a:hover { transform: translateY(-3px); background: var(--secondary); color: #fff; }
+
+/* Nosotros (Grid + Timeline) */
+.hero-nosotros { background: var(--primary); color: #fff; text-align: center; padding: 3rem 1rem; margin-bottom: 2rem; border-bottom: 4px solid var(--secondary); }
+.mision-vision { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+.timeline { position: relative; padding-left: 1.5rem; border-left: 3px solid var(--secondary); margin: 1rem 0; }
+.timeline-item { margin-bottom: 1rem; padding-left: 1rem; position: relative; transition: transform 0.3s; }
+.timeline-item:hover { transform: translateX(5px); }
+.timeline-item::before { content: ''; position: absolute; left: -1.85rem; top: 0.3rem; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; transition: transform 0.3s; }
+.timeline-item:hover::before { transform: scale(1.5); }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; text-align: center; margin: 2rem 0; }
+.stat-card .numero { display: block; font-size: 2rem; font-weight: bold; color: var(--accent); transition: transform 0.3s; }
+.stat-card:hover .numero { transform: scale(1.2); }
+.lista-valores li { background: #fff; padding: 0.8rem; margin: 0.5rem 0; border-left: 4px solid var(--secondary); transition: padding-left 0.3s; }
+.lista-valores li:hover { padding-left: 1.2rem; background: var(--light); }
+
+/* =========================================
+   6. AUTOES & GÉNEROS (Grid/Flex + Animaciones)
+   ========================================= */
+.autores-main, .generos-main { padding: 2rem 1rem; max-width: 1200px; margin: 0 auto; text-align: center; }
+.autores-main h2, .generos-main h2 { color: var(--primary); margin-bottom: 0.5rem; }
+.autores-main .intro, .generos-main .intro { color: #555; margin-bottom: 2rem; }
+
+.grid-autores { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+.card-autor { background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: var(--shadow); border: 1px solid var(--border); transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s; }
+.card-autor:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+.img-autor { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; margin: 0 auto 1rem; transition: transform 0.4s; }
+.card-autor:hover .img-autor { transform: rotate(3deg) scale(1.05); }
+.card-autor h3 { color: var(--primary); margin: 0.5rem 0 0.2rem; }
+.especialidad { color: var(--secondary); font-weight: 500; margin-bottom: 0.5rem; }
+.badge { display: inline-block; background: var(--light); padding: 0.25rem 0.6rem; border-radius: 20px; font-size: 0.8rem; border: 1px solid var(--border); }
+
+.flex-generos { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
+.card-genero { background: #fff; flex: 1 1 250px; padding: 1.5rem; border-radius: 10px; box-shadow: var(--shadow); border-top: 4px solid var(--secondary); transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; cursor: pointer; }
+.card-genero:hover { transform: translateY(-6px) rotate(1deg); border-top-color: var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.12); }
+.icon { font-size: 2.5rem; margin-bottom: 0.8rem; display: inline-block; transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+.card-genero:hover .icon { transform: scale(1.2) rotate(-10deg); }
+.card-genero h3 { color: var(--primary); margin: 0.5rem 0 0.2rem; }
+.card-genero p { color: #666; margin: 0; }
+.btn-container { margin-top: 1.5rem; }
+.btn-mostrar-todos { animation: pulse 2s infinite; }
+.btn-mostrar-todos:hover { animation: none; background: var(--primary); transform: scale(1.05); }
+
+/* =========================================
+   7. NUEVAS SECCIONES (Recomendados, Lectores, Detalle)
+   ========================================= */
+/* Detalle de Libro (Recomendados.txt) */
+.libro-detalle { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: var(--shadow); }
+.detalle-grid { display: grid; grid-template-columns: 250px 1fr; gap: 2rem; }
+.detalle-portada img { width: 100%; border-radius: 4px; }
+.detalle-info h1 { color: var(--primary); font-size: 2rem; }
+.premio { color: var(--text); font-weight: bold; font-size: 1rem; margin-bottom: 0.5rem; }
+.autor { color: var(--secondary); font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem; }
+.editorial { color: var(--text); font-size: 1rem; }
+.rating { margin-bottom: 1rem; }
+.estrellas { color: #f1c40f; font-size: 1.3rem; }
+.numero-resenas { color: #666; font-size: 1rem; }
+.categorias { margin-bottom: 1.5rem; }
+.tag { display: inline-block; background: var(--secondary); color: #fff; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem; margin-right: 0.5rem; }
+.sinopsis h3 { color: var(--primary); margin: 1rem 0; font-size: 1.2rem; }
+.sinopsis p, .descripcion-completa p { color: var(--text); margin-bottom: 1rem; }
+.acciones { margin: 2rem 0; display: flex; gap: 1rem; flex-wrap: wrap; }
+.gallery { margin-top: 2rem; padding: 1.5rem; text-align: center; background: var(--light); border-radius: 8px; }
+.gallery h3 { color: var(--primary); margin-bottom: 1rem; font-size: 1.3rem; }
+.gallery video { width: 100%; max-width: 700px; border-radius: 8px; display: block; }
+.video-leyenda { margin-top: 1rem; color: #666; font-style: italic; }
+
+/* Libros Recomendados (libros-recomendados.txt) */
+.banner-simple { background: var(--primary); color: #fff; text-align: center; padding: 2rem 1rem; margin-bottom: 2rem; }
+.banner-simple h2 { color: #fff; font-size: 2rem; margin-bottom: 0.5rem; font-family: 'Georgia',serif; transition: font-size 0.3s; }
+.banner-simple h2:hover { font-size: 3rem; }
+.banner-simple p { font-size: 1rem; opacity: 0.9; }
+.libros-recomendados { max-width: 900px; margin: 0 auto; }
+.libro-recomendado-card { background: #DFE4ED; margin: 0 auto 2rem; padding: 2rem; border-radius: 8px; border-left: 5px solid var(--secondary); max-width: 900px; }
+.libro-content { display: flex; gap: 2rem; align-items: flex-start; }
+.libro-portada { flex-shrink: 0; width: 160px; height: auto; border-radius: 4px; }
+.libro-portada img { opacity: 1; transition: opacity 0.3s ease; }
+.libro-portada img:hover { opacity: 0.8; }
+.libro-info { flex: 1; color: var(--primary); font-size: 1.3rem; margin-bottom: 0.5rem; }
+.recomendado-por { color: var(--text); font-weight: bold; font-size: 1rem; margin-bottom: 1rem; }
+.libro-descripcion { color: #555; line-height: 1.6; margin-bottom: 1.5rem; font-size: 1rem; }
+
+/* Lectores Críticos (lectores-criticos.txt) */
+.criticos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem; margin-bottom: 3rem; }
+.critico-card { background: #fff; border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; align-items: center; text-align: center; box-shadow: var(--shadow); transition: transform 0.3s; }
+.critico-card:hover { transform: translateY(-4px); }
+.critico-foto { width: 140px; height: 140px; margin-bottom: 1.5rem; }
+.critico-foto img { width: 100%; height: 100%; object-fit: cover; border-radius: 30%; }
+.critico-info h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 1rem; }
+.critico-especialidad { color: var(--secondary); font-weight: bold; margin-bottom: 1.5rem; padding: 0.5rem 1rem; border-radius: 20px; background: rgba(52,152,219,0.1); display: inline-block; }
+.critico-obra { width: 100%; background: var(--light); padding: 1.2rem; border-radius: 8px; border-left: 3px solid var(--border); text-align: left; }
+.critico-obra h4 { color: var(--primary); margin-bottom: 0.5rem; }
+.titulo-obra { color: var(--secondary); font-weight: bold; font-size: 1rem; margin-bottom: 0.5rem; }
+.cita-critico { color: #666; font-size: 0.9rem; line-height: 1.6; font-style: italic; }
+
+/* =========================================
+   8. ANIMACIONES & TRANSICIONES
+   ========================================= */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fadeUp 0.6s ease-out forwards; opacity: 0; }
+.grid-autores .card-autor:nth-child(1) { --d:0.1s; } .grid-autores .card-autor:nth-child(2) { --d:0.15s; } .grid-autores .card-autor:nth-child(3) { --d:0.2s; } .grid-autores .card-autor:nth-child(4) { --d:0.25s; }
+.grid-autores .card-autor:nth-child(5) { --d:0.3s; } .grid-autores .card-autor:nth-child(6) { --d:0.35s; } .grid-autores .card-autor:nth-child(7) { --d:0.4s; } .grid-autores .card-autor:nth-child(8) { --d:0.45s; }
+.grid-autores .card-autor:nth-child(9) { --d:0.5s; } .grid-autores .card-autor:nth-child(10) { --d:0.55s; } .grid-autores .card-autor:nth-child(11) { --d:0.6s; } .grid-autores .card-autor:nth-child(12) { --d:0.65s; }
+.grid-autores .card-autor:nth-child(13) { --d:0.7s; } .grid-autores .card-autor:nth-child(14) { --d:0.75s; } .grid-autores .card-autor:nth-child(15) { --d:0.8s; } .grid-autores .card-autor:nth-child(16) { --d:0.85s; }
+.grid-autores .card-autor { animation-delay: var(--d, 0s); }
+
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+.slide-in { animation: slideInLeft 0.5s ease-out forwards; opacity: 0; }
+.flex-generos .card-genero:nth-child(1) { --d:0.1s; } .flex-generos .card-genero:nth-child(2) { --d:0.14s; } .flex-generos .card-genero:nth-child(3) { --d:0.18s; } .flex-generos .card-genero:nth-child(4) { --d:0.22s; }
+.flex-generos .card-genero:nth-child(5) { --d:0.26s; } .flex-generos .card-genero:nth-child(6) { --d:0.3s; } .flex-generos .card-genero:nth-child(7) { --d:0.34s; } .flex-generos .card-genero:nth-child(8) { --d:0.38s; }
+.flex-generos .card-genero:nth-child(9) { --d:0.42s; } .flex-generos .card-genero:nth-child(10) { --d:0.46s; } .flex-generos .card-genero:nth-child(11) { --d:0.5s; } .flex-generos .card-genero:nth-child(12) { --d:0.54s; }
+.flex-generos .card-genero:nth-child(13) { --d:0.58s; } .flex-generos .card-genero:nth-child(14) { --d:0.62s; } .flex-generos .card-genero:nth-child(15) { --d:0.66s; } .flex-generos .card-genero:nth-child(16) { --d:0.7s; }
+.flex-generos .card-genero { animation-delay: var(--d, 0s); }
+
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(52,152,219,0.4); } 50% { box-shadow: 0 0 0 10px rgba(52,152,219,0); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* =========================================
+   9. MEDIA QUERIES RESPONSIVAS (UNIFICADAS)
+   ========================================= */
+@media (max-width: 1024px) {
+  .catalogo-container { grid-template-columns: 200px 1fr; }
+  .flex-generos { justify-content: space-around; }
+  .criticos-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  header .container { 
+    flex-direction: row; /* Mantiene el logo y el botón en la misma línea */
+    justify-content: space-between; /* Logo a la izquierda, botón a la derecha */
+    width: 100%; 
+}
+  nav ul { flex-direction: column; width: 100%; justify-content: center; }
+  .dropdown-menu { position: static; display: none; background: var(--dark); margin-left: 1rem; }
+  .dropdown:hover .dropdown-menu { display: flex; }
+  .user-profile-nav { width: 100%; justify-content: center; margin: 0.5rem auto 0; background: rgba(255,255,255,0.1); }
+  .user-profile-nav .user-name { display: none; }
+  
+  main { padding: 1rem 0; }
+  .catalogo-container { grid-template-columns: 1fr; }
+  .sidebar-catalogo { position: static; }
+  .grid-libros { grid-template-columns: 1fr; }
+  .contacto-grid, .mision-vision, .grid-autores { grid-template-columns: 1fr; }
+  .banner h2, .banner-simple h2 { font-size: 1.5rem; }
+  .banner-simple h2:hover { font-size: 1.8rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .flex-generos { flex-direction: column; align-items: center; }
+  .card-genero { flex: 1 1 100%; max-width: 400px; }
+  
+  .detalle-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .detalle-portada { max-width: 200px; margin: 0 auto; }
+  .detalle-info h1 { font-size: 1.6rem; text-align: center; }
+  .premio, .autor { text-align: center; }
+  .gallery video { width: 100%; }
+  
+  .libro-content { flex-direction: column; text-align: center; }
+  .libro-portada { width: 140px; margin: 0 auto; }
+  .libro-info { text-align: center; }
+  .libro-recomendado-card { border-left: none; border-top: 5px solid var(--secondary); }
+  
+  .criticos-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .critico-foto { width: 120px; height: 120px; }
+}
+
+/* =========================================
+   DETALLE DE AUTOR & LOGROS
+   ========================================= */
+.autor-detalle-main { padding: 2rem 1rem; }
+.autor-perfil { 
+  display: flex; flex-direction: column; gap: 2rem; align-items: center; 
+  background: #fff; padding: 2rem; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 2rem; 
+}
+.autor-bio { text-align: center; }
+.autor-bio h2 { color: var(--primary); margin-bottom: 1rem; }
+.autor-foto { 
+  width: 200px; height: 200px; border-radius: 50%; overflow: hidden; 
+  border: 4px solid var(--secondary); margin-bottom: 1.5rem; transition: transform 0.3s; 
+}
+.autor-foto:hover { transform: scale(1.05); }
+.autor-foto img { width: 100%; height: 100%; object-fit: cover; }
+.autor-logros h3, .autor-libros h3 { 
+  color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 0.5rem; margin-bottom: 1rem; 
+}
+.lista-logros { list-style: none; padding: 0; text-align: left; display: inline-block; }
+.lista-logros li { margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; }
+.lista-logros li::before { content: '🏅'; position: absolute; left: 0; }
+
+.autor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+.mini-card { 
+  background: #fff; padding: 1.5rem; border-radius: 6px; border-left: 5px solid var(--secondary); 
+  box-shadow: var(--shadow); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; 
+}
+.mini-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+.mini-card h4 { color: var(--primary); margin-bottom: 0.5rem; }
+.mini-card p { color: #666; font-size: 0.9rem; margin-bottom: 1rem; }
+.mini-card .btn-ver { margin-top: auto; width: 100%; }
+
+/* =========================================
+   HISTORIAL DE PRÉSTAMOS & SEDE
+   ========================================= */
+.historial-main { padding: 2rem 1rem; }
+.historial-intro { margin-bottom: 2rem; text-align: center; }
+.historial-intro h2 { color: var(--primary); }
+.historial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+
+.tarjeta-prestamo { 
+  background: #fff; padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); 
+  box-shadow: var(--shadow); display: flex; justify-content: space-between; align-items: center; 
+  transition: transform 0.3s, border-color 0.3s; 
+}
+.tarjeta-prestamo:hover { transform: translateX(5px); border-color: var(--secondary); }
+
+.prestamo-info h4 { color: var(--primary); margin-bottom: 0.3rem; }
+.prestamo-info p { color: #777; font-size: 0.85rem; }
+
+.prestamo-status { padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+.status-devuelto { background: #d4edda; color: #155724; }
+.status-activo { background: #cce5ff; color: #004085; }
+.status-retrasado { background: #f8d7da; color: #721c24; }
+
+.sede-fisica-container { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 2rem; }
+.sede-fisica-container h3 { color: var(--primary); margin-bottom: 1rem; border-bottom: 2px solid var(--secondary); padding-bottom: 0.5rem; }
+.sede-detalles p { margin-bottom: 0.5rem; }
+
+/* Responsive Específico */
+@media (max-width: 768px) {
+  .autor-perfil { flex-direction: column; align-items: center; }
+  .autor-foto { width: 150px; height: 150px; }
+  .tarjeta-prestamo { flex-direction: column; text-align: center; gap: 1rem; }
+  .prestamo-status { width: 100%; text-align: center; }
+}
+
+/* =========================================
+10. MENÚ RESPONSIVO (HAMBURGUESA) - SEM 14
+========================================= */
+.hamburger {
+display: none; background: none; border: none; color: #fff; 
+font-size: 1.8rem; cursor: pointer; padding: 0.5rem;
+}
+@media (max-width: 768px) {
+.hamburger { display: block; }
+header .container { position: relative; }
+nav#navMenu {
+display: none; width: 100%; flex-direction: column; 
+background: var(--dark); position: absolute; top: 100%; left: 0;
+padding: 1rem; z-index: 999;
+}
+nav#navMenu.active { display: flex; }
+nav#navMenu ul { flex-direction: column; width: 100%; }
+}
+@media (max-width: 768px) {
+    .header-left {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+    
+    .user-profile-nav {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* =========================================
+11. VENTANAS FLOTANTES (MODALES) - SEM 14
+========================================= */
+.modal-overlay {
+display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center;
+}
+.modal-overlay.active { display: flex; animation: fadeIn 0.3s; }
+.modal-content {
+background: #fff; padding: 2rem; border-radius: 8px; width: 90%; max-width: 500px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.2); position: relative;
+}
+.modal-close {
+position: absolute; top: 10px; right: 15px; background: none; border: none;
+font-size: 1.5rem; cursor: pointer; color: var(--text);
+}
+
+/* =========================================
+12. PERFIL Y CONFIGURACIÓN - SEM 11-13
+========================================= */
+.profile-card {
+display: flex; gap: 2rem; background: #fff; padding: 2rem; border-radius: 8px;
+box-shadow: var(--shadow); align-items: center; flex-wrap: wrap;
+}
+.profile-avatar {
+width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+border: 4px solid var(--secondary);
+}
+.profile-info { flex: 1; min-width: 200px; }
+.profile-info h2 { color: var(--primary); margin-bottom: 0.5rem; }
+.profile-actions { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
+
+.settings-section {
+background: #fff; padding: 2rem; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 2rem;
+}
+.settings-section h3 {
+color: var(--primary); border-bottom: 2px solid var(--secondary);
+padding-bottom: 0.5rem; margin-bottom: 1.5rem;
+}
+.setting-item {
+display: flex; justify-content: space-between; align-items: center;
+padding: 1rem 0; border-bottom: 1px solid var(--border);
+}
+.setting-item:last-child { border-bottom: none; }
+
+/* =========================================
+13. PERFIL AVANZADO & ESTADÍSTICAS
+========================================= */
+.profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin-top: 2rem; }
+.profile-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+.stats-grid-profile { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+.stat-box { background: #fff; padding: 1.2rem; border-radius: 8px; text-align: center; box-shadow: var(--shadow); border-top: 3px solid var(--secondary); }
+.stat-box h4 { font-size: 1.8rem; color: var(--primary); }
+.stat-box p { font-size: 0.85rem; color: #666; }
+
+.activity-list { background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: var(--shadow); }
+.activity-item { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid var(--border); }
+.activity-item:last-child { border-bottom: none; }
+.activity-item span:first-child { font-weight: bold; color: var(--primary); }
+.activity-item span:last-child { font-size: 0.85rem; color: #888; }
+
+/* =========================================
+14. CONFIGURACIÓN AVANZADA & TAGS
+========================================= */
+.config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+.config-card { background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 1.5rem; }
+.config-card h3 { color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+.config-row { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px dashed var(--border); }
+.config-row:last-child { border-bottom: none; }
+
+.tags-container { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; min-height: 40px; }
+.tag-genre { background: var(--secondary); color: #fff; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem; }
+.tag-genre button { background: none; border: none; color: #fff; cursor: pointer; font-weight: bold; padding: 0; font-size: 1rem; }
+
+@media (max-width: 768px) {
+    .profile-grid, .config-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================
+15. REDES SOCIALES & MODAL FORM
+========================================= */
+.social-buttons { display: flex; gap: 0.5rem; margin: 1rem 0; flex-wrap: wrap; }
+.social-buttons a { padding: 0.4rem 0.8rem; background: var(--primary); color: #fff; border-radius: 4px; font-size: 0.8rem; transition: background 0.3s; }
+.social-buttons a:hover { background: var(--secondary); }
+.modal-form input, .modal-form textarea { margin-bottom: 0.8rem; width: 100%; }
+.btn-danger { background: var(--accent) !important; }
+.btn-danger:hover { background: #922b21 !important; }
+
+/* =========================================
+16. CONFIGURACIÓN GRID (10 ITEMS)
+========================================= */
+.config-grid-advanced { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.config-item { background: #fff; padding: 1.2rem; border-radius: 8px; box-shadow: var(--shadow); display: flex; justify-content: space-between; align-items: center; }
+.config-item label { font-weight: bold; color: var(--primary); }
+.config-item select, .config-item input[type="checkbox"] { width: auto; margin: 0; }
+@media (max-width: 768px) { .config-grid-advanced { grid-template-columns: 1fr; } }
+
+/* =========================================
+17. BLOG (CUMPLIMIENTO LINEAMIENTO 12)
+========================================= */
+.blog-section { padding: 2rem 1rem; text-align: center; }
+.blog-section h2 { color: var(--primary); margin-bottom: 1rem; }
+.grid-blog { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.card-blog { background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: var(--shadow); border-top: 4px solid var(--secondary); text-align: left; transition: transform 0.3s; }
+.card-blog:hover { transform: translateY(-5px); }
+.card-blog h3 { color: var(--primary); margin-bottom: 0.5rem; }
+.card-blog p { color: #666; margin-bottom: 1rem; font-size: 0.95rem; }
+
+/* =========================================
+18. ÁRBOL DE CATEGORÍAS (DEMO DOM)
+========================================= */
+.arbol-categorias {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.arbol-categorias h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 0.5rem;
+}
+
+/* Niveles del árbol */
+.arbol-nivel-1, .arbol-nivel-2, .arbol-nivel-3 {
+    list-style: none;
+    padding-left: 1.2rem;
+    margin: 0.3rem 0;
+    border-left: 2px solid var(--border);
+}
+
+.arbol-nivel-1 { padding-left: 0; border-left: none; }
+
+/* Nodos */
+.nodo-padre, .nodo-hoja {
+    padding: 0.4rem 0.6rem;
+    margin: 0.2rem 0;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nodo-padre:hover, .nodo-hoja:hover {
+    background: var(--light);
+    transform: translateX(3px);
+}
+
+.nodo-texto {
+    font-weight: 600;
+    color: var(--primary);
+    display: block;
+}
+
+.nodo-hoja {
+    color: var(--text);
+    font-size: 0.9rem;
+    display: block;
+}
+
+/* Estado activo al hacer clic */
+.nodo-activo {
+    background: var(--secondary) !important;
+    color: #fff !important;
+    border-left: 4px solid var(--accent);
+}
+
+.nodo-activo .nodo-texto,
+.nodo-activo.nodo-hoja {
+    color: #fff !important;
+}
+
+/* Ocultar subniveles por defecto */
+.arbol-nivel-2, .arbol-nivel-3 {
+    display: none;
+}
+
+/* Mostrar cuando el padre tiene clase "expandido" */
+.nodo-padre.expandido > ul {
+    display: block;
+    animation: fadeUp 0.3s ease;
+}
+
+
+
+
+/* =========================================
+   NUEVOS MÓDULOS: RESERVAS Y MULTAS (JS)
+   ========================================= */
+.form-container {
+    background: #fff; padding: 2rem; border-radius: 8px;
+    box-shadow: var(--shadow); border-top: 4px solid var(--secondary);
+    max-width: 600px; margin: 0 auto;
+}
+
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; font-weight: bold; margin-bottom: 0.5rem; color: var(--primary); }
+.status-badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 4px; font-weight: bold; margin-top: 0.5rem; }
+.status-disponible { background: #d4edda; color: #155724; }
+.status-ocupado { background: #f8d7da; color: #721c24; }
+
+.resultado-caja {
+    background: var(--light); padding: 1.5rem; border-radius: 6px;
+    border-left: 5px solid var(--accent); margin-top: 1.5rem;
+    font-size: 1.2rem; text-align: center; display: none; /* Oculto hasta que JS lo active */
+}
+
+/* --- VENTANA FLOTANTE (MODAL) --- */
+.modal-overlay {
+    display: none; /* Oculto por defecto, se activa con JS */
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); z-index: 2000;
+    justify-content: center; align-items: center;
+}
+
+.modal-content {
+    background: #fff; padding: 2.5rem; border-radius: 8px;
+    max-width: 400px; width: 90%; text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2); animation: fadeIn 0.3s ease;
+}
+
+.modal-content h3 { color: var(--primary); margin-bottom: 1rem; }
+.modal-content p { margin-bottom: 1.5rem; color: var(--text); }
+.modal-botones { display: flex; gap: 1rem; justify-content: center; }
+.btn-cancelar { background: #95a5a6; color: white; padding: 0.6rem 1rem; border: none; border-radius: 4px; cursor: pointer; }
+.btn-cancelar:hover { background: #7f8c8d; }
+
+
+/* =========================================
+   QUIZ CSS
+   ========================================= */
+
+
+.quiz-main {
+    flex: 1;
+    padding: 2rem 0;
+}
+.banner-quiz {
+    background: var(--primary); 
+    color: #fff;
+    text-align: center;
+    padding: 2.5rem 1rem;
+    margin-bottom: 3rem;
+    animation: fadeInDown 0.8s ease;
+}
+
+.banner-quiz h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Georgia';
+    transition: font-size 0.3s;
+}
+.banner-quiz h2:hover{
+    font-size: 3rem; 
+}
+
+/* Grid de Quizzes */
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 4rem auto;
+}
+
+/* Tarjeta de Quiz */
+.quiz-card {
+    text-align: center;
+}
+
+.quiz-card:hover {
+    transform: translateY(-10px);
+}
+
+.quiz-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem auto;
+}
+
+.titulo-quiz {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.descripcion-quiz {
+    color: #666;
+    margin-bottom: 1.5rem;
+    min-height: 40px;
+}
+
+.mensaje {
+    margin-top: 1rem;
+    border-radius: 4px;
+    display: none;
+}
+
+.mensaje.error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+/* QUIZ DE PREGUNTAS */
+.quiz-box {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+#quiz-progress {
+    color: var(--secondary);
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.quiz-question {
+    font-size: 1.3rem;
+    color: var(--primary);
+    min-height: 60px;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.opcion-btn {
+    padding: 1rem;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.opcion-btn:hover {
+    border-color: var(--secondary);
+    background: #f0f8ff;
+    transform: translateX(5px); 
+    color: blue;
+}
+/* Resultado final */
+.quiz-result h3 {
+    color: var(--primary);
+}
+
+#score-final {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--secondary);
+}
+
+#message-final {
+    color: #666;
+}
