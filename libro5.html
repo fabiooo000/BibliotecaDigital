@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>El Poder del Hábito | Biblioteca Digital</title>
+        <link rel="stylesheet" href="css/global.css">
+        <link rel="stylesheet" href="css/catalogo.css">
+    </head>
+    <body>
+        <!-- <header> global.js </header>-->
+
+        <main class="detalle-libro">
+            <article>
+                <figure>
+                    <img src="images/book5.png" alt="Portada" width="300">
+                    <figcaption>Vista previa disponible</figcaption>
+                </figure>
+
+                <section class="info-libro">
+                    <h2>Orientalismo</h2>
+                    <p class="autor"><strong>Autor:</strong> Edward Said</p>
+                    <p class="isbn"><strong>ISBN:</strong> 978-0394740676</p>
+                    <p class="anio"><strong>Año:</strong> 1978</p>
+                    <p class="genero"><strong>Género:</strong> Estudios Culturales / Ciencias Políticas</p>
+                    <h3>Sinopsis</h3>
+                    <p>Análisis crítico de cómo Occidente ha construido una visión estereotipada y dominante de Oriente, examinando los vínculos entre conocimiento, poder y colonialismo.</p>
+
+                    <div class="acciones">
+                        <button class="btn-primary">📖 Leer Ahora</button>
+                        <button class="btn-secondary">🔖 Guardar</button>
+                        <button class="btn-outline">📤 Compartir</button>
+                    </div>
+                </section>
+            </article>
+
+            <!-- Sección de reseñas -->
+            <section class="resenas">
+                <h3>Reseñas de Lectores</h3>
+                <form class="form-resena">
+                    <textarea name="comentario" placeholder="Escribe tu opinión..." required></textarea>
+                    <label>Calificación:
+                        <select name="rating">
+                            <option value="5">⭐⭐⭐⭐⭐</option>
+                            <option value="4">⭐⭐⭐⭐</option>
+                            <option value="3">⭐⭐⭐</option>
+                            <option value="2">⭐⭐</option>
+                            <option value="1">⭐</option>
+                        </select>
+                    </label>
+                    <button type="submit">Enviar Reseña</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <iframe height="280" class="site-footer-frame" src="footer.html" frameborder="0" scrolling="no"></iframe>
+        </footer>
+
+    <script src="js/global.js"></script>
+    </body>
+</html>

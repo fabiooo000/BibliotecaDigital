@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Digital | Catálogo</title>
+    <link rel="stylesheet" href="css/global.css">
+</head>
+
+<body>
+    <!-- <header> global.js </header>-->
+
+    <marquee class="aviso-catalogo" behavior="scroll" direction="left">
+        Nuevos ingresos: Tecnología, Ciencia Ficción y Desarrollo Personal | Usa los filtros para refinar búsquedas |
+        Préstamo digital gratuito para estudiantes
+    </marquee>
+
+    <main class="catalogo-container">
+        <aside class="sidebar-catalogo">
+            <h3>Filtros de Búsqueda</h3>
+            <form action="catalogo.html" method="GET" id="filtro-form">
+                <fieldset>
+                    <legend>Categoría</legend>
+                    <label><input type="checkbox" name="cat" value="ficcion"> Ficción</label><br>
+                    <label><input type="checkbox" name="cat" value="ciencia"> Ciencia</label><br>
+                    <label><input type="checkbox" name="cat" value="historia"> Historia</label><br>
+                    <label><input type="checkbox" name="cat" value="tecnologia"> Tecnología</label>
+                </fieldset>
+                <fieldset>
+                    <legend>Disponibilidad</legend>
+                    <label><input type="radio" name="estado" value="todos" checked> Todos</label><br>
+                    <label><input type="radio" name="estado" value="disponible"> Solo disponibles</label>
+                </fieldset>
+                <label for="anio">Año de publicación:
+                    <input type="number" placeholder="Ej: 2020">
+                </label>
+                <button>Aplicar Filtros</button>
+            </form>
+
+            <h3>Estado del Catálogo</h3>
+            <table class="tabla-stats">
+                <tr>
+                    <th>Métrica</th>
+                    <th>Cantidad</th>
+                </tr>
+                <tr>
+                    <td>Total Obras</td>
+                    <td>10,240</td>
+                </tr>
+                <tr>
+                    <td>Disponibles</td>
+                    <td>9,150</td>
+                </tr>
+                <tr>
+                    <td>En Préstamo</td>
+                    <td>1,190</td>
+                </tr>
+            </table>
+        </aside>
+
+        <section class="contenido-catalogo">
+            <h2>Catálogo General</h2>
+            <p>Explora nuestra colección. Haz clic en un título para ver sinopsis, disponibilidad y opciones de
+                préstamo.</p>
+
+            <div class="grid-libros">
+                <article class="card-libro">
+                    <img src="images/book1.png" alt="Calculus" width="150" height="200">
+                    <h3><a href="libro1.html">Calculus</a></h3>
+                    <p class="autor">James Stewart</p>
+                    <p class="estado-disponible">✅ Disponible</p>
+                    <a href="libro1.html" class="btn-ver">Ver Detalles</a>
+                </article>
+                <article class="card-libro">
+                    <img src="images/book2.png" alt="Metodología de la Investigación" width="150" height="200">
+                    <h3><a href="libro2.html">Metodología de la Investigación</a></h3>
+                    <p class="autor">Roberto Hernández Sampieri</p>
+                    <p class="estado-prestado">⏳ Prestado</p>
+                    <a href="libro2.html" class="btn-ver">Ver Detalles</a>
+                </article>
+                <article class="card-libro">
+                    <img src="images/book3.png" alt="The Elements of Style" width="150" height="200">
+                    <h3><a href="libro3.html">The Elements of Style</a></h3>
+                    <p class="autor">William Strunk Jr. & E.B. White</p>
+                    <p class="estado-disponible">✅ Disponible</p>
+                    <a href="libro3.html" class="btn-ver">Ver Detalles</a>
+                </article>
+                <article class="card-libro">
+                    <img src="images/book4.png" alt="El origen de las especies" width="150" height="200">
+                    <h3><a href="libro4.html">El origen de las especies</a></h3>
+                    <p class="autor">Charles Darwin</p>
+                    <p class="estado-disponible">✅ Disponible</p>
+                    <a href="libro4.html" class="btn-ver">Ver Detalles</a>
+                </article>
+                <article class="card-libro">
+                    <img src="images/book5.png" alt="Orientalismo" width="150" height="200">
+                    <h3><a href="libro5.html">Orientalismo</a></h3>
+                    <p class="autor">Edward Said</p>
+                    <p class="estado-prestado">⏳ Prestado</p>
+                    <a href="libro5.html" class="btn-ver">Ver Detalles</a>
+                </article>
+                <article class="card-libro">
+                    <img src="images/book6.png" alt="El Príncipe" width="150" height="200">
+                    <h3><a href="libro6.html">El Príncipe</a></h3>
+                    <p class="autor">Niccolò Machiavelli</p>
+                    <p class="estado-disponible">✅ Disponible</p>
+                    <a href="libro6.html" class="btn-ver">Ver Detalles</a>
+                </article>
+                <article class="card-libro">
+                    <img src="images/book7.png" alt="El malestar en la cultura" width="150" height="200">
+                    <h3><a href="libro7.html">El malestar en la cultura</a></h3>
+                    <p class="autor">Sigmund Freud</p>
+                    <p class="estado-disponible">✅ Disponible</p>
+                    <a href="libro7.html" class="btn-ver">Ver Detalles</a>
+                </article>
+                <article class="card-libro">
+                    <img src="images/book8.png" alt="1984" width="150" height="200">
+                    <h3><a href="libro8.html">1984</a></h3>
+                    <p class="autor">George Orwell</p>
+                    <p class="estado-prestado">⏳ Prestado</p>
+                    <a href="libro8.html" class="btn-ver">Ver Detalles</a>
+                </article>
+                <article class="card-libro">
+                    <img src="images/book9.png" alt="Cien años de soledad" width="150" height="200">
+                    <h3><a href="libro9.html">Cien años de soledad</a></h3>
+                    <p class="autor">Gabriel García Márquez</p>
+                    <p class="estado-disponible">✅ Disponible</p>
+                    <a href="libro9.html" class="btn-ver">Ver Detalles</a>
+                </article>
+                <article class="card-libro">
+                    <img src="images/book10.png" alt="La República" width="150" height="200">
+                    <h3><a href="libro10.html">La República</a></h3>
+                    <p class="autor">Platón</p>
+                    <p class="estado-disponible">✅ Disponible</p>
+                    <a href="libro10.html" class="btn-ver">Ver Detalles</a>
+                </article>
+            </div>
+
+            <nav class="paginacion">
+                <a>&laquo; Anterior</a>
+                <a class="active">1</a>
+                <a>2</a>
+                <a>3</a>
+                <span>...</span>
+                <a>20</a>
+                <a>Siguiente &raquo;</a>
+            </nav>
+
+            <h3>📋 Registro de Obras (Página 1)</h3>
+            <table class="tabla-catalogo">
+                <caption>Listado oficial de inventario bibliográfico</caption>
+                <thead>
+                    <tr>
+                        <th>ISBN</th>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Año</th>
+                        <th>Género</th>
+                        <th>Ubicación</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>978-0-8129-8160-5</td>
+                        <td>El Poder del Hábito</td>
+                        <td>Charles Duhigg</td>
+                        <td>2012</td>
+                        <td>Desarrollo Personal</td>
+                        <td>Estante B-12</td>
+                        <td><a href="libro.html?id=1" class="btn-tabla">Reservar</a></td>
+                    </tr>
+                    <tr>
+                        <td>978-0-0623-1611-8</td>
+                        <td>Sapiens</td>
+                        <td>Yuval Noah Harari</td>
+                        <td>2015</td>
+                        <td>Historia</td>
+                        <td>Estante A-04</td>
+                        <td><a href="libro.html?id=2" class="btn-tabla">Reservar</a></td>
+                    </tr>
+                    <tr>
+                        <td>978-0-13-235088-4</td>
+                        <td>Clean Code</td>
+                        <td>Robert C. Martin</td>
+                        <td>2008</td>
+                        <td>Tecnología</td>
+                        <td>Estante C-08</td>
+                        <td><a href="libro.html?id=3" class="btn-tabla">Reservar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <section class="promo-catalogo">
+                <h3>🎬 Recorrido Virtual por la Biblioteca</h3>
+                <iframe width="100%" height="539" src="videos/video_principal.mp4" title="Tour Biblioteca"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </section>
+
+            
+        </section>
+    </main>
+
+    <section style="margin: 2rem 0; text-align: center;">
+        <style>
+            #tabla-inventario {
+                margin: 1rem auto;
+                width: 90%;
+                max-width: 500px;
+                border-collapse: collapse;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            #tabla-inventario th,
+            #tabla-inventario td {
+                padding: 0.8rem;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            #tabla-inventario th {
+                background: var(--primary);
+                color: white;
+                cursor: pointer;
+                user-select: none;
+            }
+
+            #tabla-inventario th:hover {
+                background: var(--secondary);
+            }
+
+            #tabla-inventario tr:hover {
+                background: #f5f5f5;
+            }
+
+            .btn-ordenar {
+                margin: 0.3rem;
+                padding: 0.5rem 1rem;
+                background: var(--secondary);
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.9rem;
+            }
+
+            .btn-ordenar:hover {
+                background: var(--primary);
+            }
+
+            .btn-ordenar.activo {
+                background: var(--accent);
+            }
+
+            .indicador-orden {
+                font-size: 0.8rem;
+                margin-left: 0.3rem;
+            }
+        </style>
+
+        <h3>- Inventario -</h3>
+
+        <div style="margin: 1rem 0;">
+            <button class="btn-ordenar" onclick="ordenarPor('codigo')">
+                Ordenar por Código
+            </button>
+            <button class="btn-ordenar" onclick="ordenarPor('titulo')">
+                Ordenar por Título
+            </button>
+            <button class="btn-ordenar" onclick="ordenarPor('anio')">
+                Ordenar por Año
+            </button>
+            <button class="btn-ordenar" onclick="invertirOrden()">
+                Invertir Orden ↕
+            </button>
+        </div>
+
+        <table id="tabla-inventario">
+            <thead>
+                <tr>
+                    <th onclick="ordenarPor('codigo')">
+                        ISBN <span class="indicador-orden" id="ind-codigo"></span>
+                    </th>
+                    <th onclick="ordenarPor('titulo')">
+                        Título <span class="indicador-orden" id="ind-titulo"></span>
+                    </th>
+                    <th onclick="ordenarPor('anio')">
+                        Año <span class="indicador-orden" id="ind-anio"></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+    <script src="js/catalogo-avanzado.js"></script>
+
+    <script src="js/catalogo.js"></script>
+
+    <footer>
+        <iframe height="280" class="site-footer-frame" src="footer.html" frameborder="0" scrolling="no"></iframe>
+    </footer>
+
+    <script src="js/global.js"></script>
+</body>
+
+</html>

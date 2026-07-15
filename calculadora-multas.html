@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título de tu página | Biblioteca Digital</title>
+
+    <link rel="stylesheet" href="css/global.css">
+
+    <link rel="stylesheet" href="css/estilos-nuevos.css">
+</head>
+
+<body>
+    <!-- <header> global.js </header>-->
+
+    <main class="container">
+        <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary);">Simulador de Multas por Retraso</h2>
+
+        <div class="form-container">
+            <div class="form-group">
+                <label for="tipoLibro">Tipo de Material Prestado:</label>
+                <select id="tipoLibro">
+                    <option value="general">Colección General (S/. 2.00 por día)</option>
+                    <option value="reserva">Libro de Reserva (S/. 5.00 por día)</option>
+                    <option value="multimedia">Material Multimedia (S/. 10.00 por día)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="diasRetraso">Días de retraso:</label>
+                <input type="number" id="diasRetraso" min="1" placeholder="Ej: 3">
+            </div>
+
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn" onclick="calcularMulta()">Calcular Deuda</button>
+                <button class="btn" style="background: var(--dark);" onclick="ingresarDescuento()">Ingresar Código de
+                    Exoneración</button>
+            </div>
+
+            <div id="resultadoMulta" class="resultado-caja">
+                <strong>Deuda Total Calculada:</strong> <br>
+                <span id="montoFinal" style="font-size: 2rem; color: var(--accent); font-weight: bold;">S/. 0.00</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/multas.js" type="text/javascript"></script>
+
+    <footer>
+        <iframe height="280" class="site-footer-frame" src="footer.html" frameborder="0" scrolling="no"></iframe>
+    </footer>
+
+    <script src="js/global.js"></script>
+</body>
+
+</html>

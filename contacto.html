@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Contacto - Biblioteca Digital">
+        <title>Biblioteca Digital | Contacto</title>
+        <link rel="stylesheet" href="css/global.css">
+    </head>
+    <body>
+        <!-- <header> global.js </header>-->
+
+        <main class="contacto-main">
+            <h2>Contáctanos</h2>
+            <p class="intro">¿Tienes dudas, sugerencias o reclamos? Escríbenos y te responderemos a la brevedad.</p>
+
+            <section class="contacto-grid">
+                <section class="form-contacto">
+                    <h3>Envíanos un mensaje</h3>
+                    <form action="#" method="post" class="formulario">
+                        <fieldset>
+                            <legend>Datos Personales</legend>
+                            <label for="nombre">Nombre completo *:
+                                <input type="text" id="nombre" name="nombre" required placeholder="Ej: Juan Pérez" size="30">
+                            </label>
+                            <label for="email">Correo electrónico *:
+                                <input type="email" id="email" name="email" required placeholder="tu@email.com" size="30">
+                            </label>
+                            <label for="telefono">Teléfono:
+                                <input type="tel" id="telefono" name="telefono" placeholder="+51 999 888 777" pattern="[0-9+\s\-]{7,15}">
+                            </label>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Tipo de Consulta</legend>
+                            <label>
+                                <input type="radio" name="tipo" value="consulta" checked> Consulta general
+                            </label>
+                            <label>
+                                <input type="radio" name="tipo" value="reclamo"> Reclamo
+                            </label>
+                            <label>
+                                <input type="radio" name="tipo" value="sugerencia"> Sugerencia
+                            </label>
+                            <label>
+                                <input type="radio" name="tipo" value="soporte"> Soporte técnico
+                            </label>
+                        </fieldset>
+
+                        <label for="asunto">Asunto *:
+                            <input type="text" id="asunto" name="asunto" required placeholder="Breve descripción" size="50">
+                        </label>
+
+                        <label for="mensaje">Mensaje *:
+                            <textarea id="mensaje" name="mensaje" rows="6" required placeholder="Escribe tu mensaje aquí..."></textarea>
+                        </label>
+
+                        Suscribirse al boletín de novedades!: 
+
+                        <label class="checkbox"><input type="checkbox" name="newsletter" value="si">
+
+                        </label>
+
+                        <br>
+                        <br>
+
+                        <button type="submit" class="btn-enviar">Enviar Mensaje ✉️</button>
+                    </form>
+                </section>
+
+                <aside class="info-contacto">
+                    <h3>Información</h3>
+
+                    <div class="contacto-card">
+                        <h4>📍 Dirección</h4>
+                        <p>Av. Parra<br>Arequipa, Perú</p>
+                    </div>
+
+                    <div class="contacto-card">
+                        <h4>📞 Teléfonos</h4>
+                        <p>+51 1 234-5678<br>+51 979 979 979</p>
+                    </div>
+
+                    <div class="contacto-card">
+                        <h4>📧 Correos</h4>
+                        <p>info@bibliotecadigital.com<br>soporte@bibliotecadigital.com</p>
+                    </div>
+
+                    <div class="contacto-card">
+                        <h4>⏰ Horario de Atención</h4>
+                        <table class="tabla-horario">
+                            <tr><td>Lun - Vie</td><td>8:00 - 20:00</td></tr>
+                            <tr><td>Sábado</td><td>9:00 - 14:00</td></tr>
+                            <tr><td>Domingo</td><td>Cerrado</td></tr>
+                        </table>
+                    </div>
+
+                    <div class="redes-contacto">
+                        <h4>Síguenos</h4>
+                        <a href="https://facebook.com" target="_blank" class="btn-red fb">Facebook</a>
+                        <a href="https://twitter.com" target="_blank" class="btn-red tw">Twitter</a>
+                        <a href="https://instagram.com" target="_blank" class="btn-red ig">Instagram</a>
+                        <a href="https://youtube.com" target="_blank" class="btn-red yt">YouTube</a>
+                    </div>
+
+                    <div class="mapa">
+                        <h4>🗺️ Ubícanos</h4>
+
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1353.1646742944731!2d-71.5424342995183!3d-16.40817673335811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424b53075c4a4d%3A0xa6e18a5d414fd5f6!2sUTP%20Av.%20Parra!5e0!3m2!1sen!2spe!4v1776836517379!5m2!1sen!2spe" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="banner-contacto">
+                <marquee behavior="scroll" direction="left" class="aviso">
+                    Activa tus notificaciones para no perderte novedades | Respuesta en menos de 24 horas
+                </marquee>
+            </section>
+        </main>
+
+        <footer>
+            <iframe height="280" class="site-footer-frame" src="footer.html" frameborder="0" scrolling="no"></iframe>
+        </footer>
+
+    <script src="js/global.js"></script>
+    </body>
+</html>

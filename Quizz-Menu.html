@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Críticos Literarios - Biblioteca Digital">
+    <title>Biblioteca Digital | Críticos Literarios</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/quizz.css">
+</head>
+<body>
+    <!-- <header> global.js </header>-->
+
+    <main class="container quiz-main">
+        <!-- Banner -->
+        <section class="banner-quiz">
+            <div class="container">
+                <h2>📚 Centro de evaluación</h2>
+                <p>Demuestra tus conocimientos...</p>
+            </div>
+        </section>
+        <!-- Opciones -->
+        <section class="quiz-grid">
+            
+            <!-- Quiz 1: Autores -->
+            <div class="card quiz-card" id="card-autores">
+                <div class="quiz-icon">
+                    <img src="images/icon-autores.jpg" alt="Icono Autores">
+                </div>
+                <h3 class="titulo-quiz">Autores Literarios</h3>
+                <p class="descripcion-quiz">Identifica a los escritores detrás de las obras clásicas.</p>
+                <a href="Quizz-Autores.html" class="btn">Iniciar Quiz</a>
+                <div id="msg-autores" class="mensaje"></div>
+            </div>
+
+            <!-- Quiz 2: Libros -->
+            <div class="card quiz-card" id="card-libros">
+                <div class="quiz-icon">
+                    <img src="images/icon-libros.jpg" alt="Icono Libros">
+                </div>
+                <h3 class="titulo-quiz">Libros Literarios</h3>
+                <p class="descripcion-quiz">Reconoce títulos, sinopsis y géneros destacados.</p>
+                <a href="Quizz-Libros.html" class="btn">Iniciar Quiz</a>
+                <div id="msg-libros" class="mensaje"></div>
+            </div>
+
+            <!-- Quiz 3: Géneros -->
+            <div class="card quiz-card" id="card-generos">
+                <div class="quiz-icon">
+                    <img src="images/icon-generos.png" alt="Icono Géneros">
+                </div>
+                <h3 class="titulo-quiz">Géneros Literarios</h3>
+                <p class="descripcion-quiz">Clasifica correctamente cada obra según su estilo.</p>
+                <a href="Quizz-Generos.html" class="btn">Iniciar Quiz</a>
+                <div id="msg-generos" class="mensaje"></div>
+            </div>
+
+            <!-- Quiz 4: Personajes -->
+            <div class="card quiz-card" id="card-personajes">
+                <div class="quiz-icon">
+                    <img src="images/icon-personajes.jpg" alt="Icono Personajes">
+                </div>
+                <h3 class="titulo-quiz">Personajes Icónicos</h3>
+                <p class="descripcion-quiz">Identifica a los protagonistas más memorables.</p>
+                <button class="btn" onclick="noDisponible('personajes')">Iniciar Quiz</button>
+                <div id="msg-personajes" class="mensaje"></div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <iframe height="280" class="site-footer-frame" src="footer.html" frameborder="0" scrolling="no"></iframe>
+    </footer>
+
+    <script src="JS/quizz-menu.js"></script>
+
+    <script src="js/global.js"></script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Biblioteca Digital - Acceso a miles de libros">
+        <title>Biblioteca Digital | Inicio</title>
+        <link rel="stylesheet" href="css/global.css">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <img src="images/logo-biblioteca.png" alt="Logo Biblioteca" width="150">
+                    <h1>Biblioteca Digital</h1>
+                </div>
+
+                <button class="hamburger" id="btnMenu" aria-label="Menú">☰</button>
+
+                <nav id="navMenu">
+                    <ul>
+                        <li><a href="index.html" class="active">Inicio</a></li>
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li class="dropdown">
+                            <a href="#">Explorar</a>
+                            <div class="dropdown-menu">
+                                <a href="autores.html">Autores</a>
+                                <a href="autor-detalle.html">Detalle de Autor</a>
+                                <a href="generos.html">Géneros</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Recomendados</a>
+                            <div class="dropdown-menu">
+                                <a href="libros-recomendados.html">Por Autor</a>
+                                <a href="lectores-criticos.html">Lectores</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#">Servicios</a>
+                            <div class="dropdown-menu">
+                                <a href="historial-prestamos.html">Historial Préstamos</a>
+                                <a href="reservas-salas.html">Reserva de Salas</a>
+                                <a href="calculadora-multas.html">Calculadora Multas</a>
+                            </div>
+                        </li>
+                        <li><a href="Quizz-Menu.html">Quizzes</a></li>
+                        <li class="dropdown">
+                            <a href="#">Institucional</a>
+                            <div class="dropdown-menu">
+                                <a href="sobre-nosotros.html">Sobre Nosotros</a>
+                                <a href="contacto.html">Contacto</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="user-profile-nav dropdown">
+                    <span class="user-name">Mi Cuenta</span>
+                    <div class="avatar-circle">F</div>
+                    <div class="dropdown-menu">
+                        <a href="perfil-usuario.html">Mi Perfil</a>
+                        <a href="perfil-configuracion.html">Configuración</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="banner">
+            <h2>Descubre el mundo del conocimiento</h2>
+            <p>+10,000 libros digitales.<br>Títulos académicos disponibles en formato digital y físico.<br>Acceso 24/7<br>Préstamos instantáneos.</p>
+            <br>
+            <a href="catalogo.html" class="btn-cta">Explorar Catálogo Completo</a>
+        </section>
+
+        <main>
+            <div class="arbol-categorias">
+                <h4>Explorar por Género</h4>
+                <ul class="arbol-nivel-1" id="arbolPrincipal">
+                    <li class="nodo-padre">
+                        <span class="nodo-texto">📚 Literatura Universal</span>
+                        <ul class="arbol-nivel-2">
+                            <li class="nodo-padre">
+                                <span class="nodo-texto">🏛️ Clásicos</span>
+                                <ul class="arbol-nivel-3">
+                                    <li><span class="nodo-hoja">Griegos</span></li>
+                                    <li><span class="nodo-hoja">Romanos</span></li>
+                                    <li><span class="nodo-hoja">Medievales</span></li>
+                                </ul>
+                            </li>
+                            <li class="nodo-padre">
+                                <span class="nodo-texto">🎭 Teatro</span>
+                                <ul class="arbol-nivel-3">
+                                    <li><span class="nodo-hoja">Tragedia</span></li>
+                                    <li><span class="nodo-hoja">Comedia</span></li>
+                                    <li><span class="nodo-hoja">Drama</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nodo-padre">
+                        <span class="nodo-texto">🔬 Ciencias</span>
+                        <ul class="arbol-nivel-2">
+                            <li class="nodo-padre">
+                                <span class="nodo-texto">🧬 Biología</span>
+                                <ul class="arbol-nivel-3">
+                                    <li><span class="nodo-hoja">Evolución</span></li>
+                                    <li><span class="nodo-hoja">Genética</span></li>
+                                </ul>
+                            </li>
+                            <li class="nodo-padre">
+                                <span class="nodo-texto">⚛️ Física</span>
+                                <ul class="arbol-nivel-3">
+                                    <li><span class="nodo-hoja">Cuántica</span></li>
+                                    <li><span class="nodo-hoja">Relatividad</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nodo-padre">
+                        <span class="nodo-texto">💻 Tecnología</span>
+                        <ul class="arbol-nivel-2">
+                            <li><span class="nodo-hoja">Programación</span></li>
+                            <li><span class="nodo-hoja">IA</span></li>
+                            <li><span class="nodo-hoja">Redes</span></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <section class="content">
+                <h2>Libros Destacados</h2>
+                <div class="grid-libros">
+                    <article class="card-libro">
+                        <img src="images/book1.png" alt="Calculus" width="150" height="200">
+                        <h3><a href="libro1.html">Calculus</a></h3>
+                        <p class="autor">James Stewart</p>
+                        <a href="libro1.html" class="btn-ver">Ver Detalles</a>
+                    </article>
+                    <article class="card-libro">
+                        <img src="images/book4.png" alt="El origen de las especies" width="150" height="200">
+                        <h3><a href="libro4.html">El origen de las especies</a></h3>
+                        <p class="autor">Charles Darwin</p>
+                        <a href="libro4.html" class="btn-ver">Ver Detalles</a>
+                    </article>
+                    <article class="card-libro">
+                        <img src="images/book8.png" alt="1984" width="150" height="200">
+                        <h3><a href="libro8.html">1984</a></h3>
+                        <p class="autor">George Orwell</p>
+                        <a href="libro8.html" class="btn-ver">Ver Detalles</a>
+                    </article>
+                    <article class="card-libro">
+                        <img src="images/book9.png" alt="Cien años de soledad" width="150" height="200">
+                        <h3><a href="libro9.html">Cien años de soledad</a></h3>
+                        <p class="autor">Gabriel García Márquez</p>
+                        <a href="libro9.html" class="btn-ver">Ver Detalles</a>
+                    </article>
+                </div>
+
+                <h3>Nuevas Adquisiciones</h3>
+                <table class="tabla-libros">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Año</th>
+                            <th>Disponibilidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Inteligencia Artificial</td>
+                            <td>Stuart Russell</td>
+                            <td>2024</td>
+                            <td><span class="disponible">Disponible</span></td>
+                        </tr>
+                        <tr>
+                            <td>El Futuro de la Humanidad</td>
+                            <td>Michio Kaku</td>
+                            <td>2024</td>
+                            <td><span class="disponible">Disponible</span></td>
+                        </tr>
+                        <tr>
+                            <td>Programación Web Moderna</td>
+                            <td>María López</td>
+                            <td>2024</td>
+                            <td><span class="prestado">Prestado</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <div class="audio-ambiente">
+            <audio controls preload="none" class="audio-control">
+                <source src="audio/background_sound.mp3" type="audio/mpeg">
+                Tu navegador no soporta audio.
+            </audio>
+        </div>
+
+        <section class="video-promo">
+            <h3>Conoce nuestra plataforma</h3>
+            <iframe width="560" height="315" src="videos/video_principal.mp4" title="Video Biblioteca" frameborder="0"
+                    allowfullscreen>
+            </iframe>
+        </section>
+
+        <section class="blog-section container">
+            <h2>Blog y Novedades Literarias</h2>
+            <div class="grid-blog">
+                <article class="card-blog">
+                    <h3>El impacto del Realismo Mágico</h3>
+                    <p>Un análisis profundo sobre cómo García Márquez transformó la literatura...</p>
+                    <a href="#" class="btn-ver">Leer más</a>
+                </article>
+                <article class="card-blog">
+                    <h3>Top 5 Libros de Ciencia Ficción</h3>
+                    <p>Descubre las obras distópicas que marcaron el siglo XX...</p>
+                    <a href="#" class="btn-ver">Leer más</a>
+                </article>
+                <article class="card-blog">
+                    <h3>Guía de Metodología UTP</h3>
+                    <p>Consejos para tus trabajos de investigación usando Hernández Sampieri...</p>
+                    <a href="#" class="btn-ver">Leer más</a>
+                </article>
+            </div>
+        </section>
+
+        <footer>
+            <iframe height="280" class="site-footer-frame" src="footer.html" frameborder="0" scrolling="no"></iframe>
+        </footer>
+
+        <script src="js/global.js"></script>
+
+    </body>
+
+</html>

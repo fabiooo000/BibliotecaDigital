@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Biblioteca Digital | Configuración</title>
+        <link rel="stylesheet" href="css/global.css">
+    </head>
+    <body>
+        <!-- <header> global.js </header>-->
+
+        <main class="container" style="padding: 2rem 1rem;">
+            <h2 id="txtTitulo" style="color: var(--primary); margin-bottom: 1.5rem;">Centro de Configuración</h2>
+            
+            <div class="config-grid-advanced">
+                <div class="config-item">
+                    <label id="txtTema">Tema de Interfaz</label>
+                    <select id="cfgTema" onchange="cambiarTema()">
+                        <option id="optClaro" value="claro">Claro</option>
+                        <option id="optOscuro" value="oscuro">Oscuro</option>
+                        <option id="optSepia" value="sepia">Sepia</option>
+                    </select>
+                </div>
+
+                <div class="config-item">
+                    <label id="txtIdioma">Idioma del Sistema</label>
+                    <select id="cfgIdioma" onchange="cambiarIdioma()">
+                        <option value="es" id="optES">Español</option>
+                        <option value="en" id="optEN">English</option>
+                    </select>
+                </div>
+
+                <div class="config-item">
+                    <label id="txtEmail">Alertas por Email</label>
+                    <input type="checkbox" checked onchange="toggleAjuste('Email', this.checked)">
+                </div>
+
+                <div class="config-item">
+                    <label id="txtPush">Notificaciones Push</label>
+                    <input type="checkbox" onchange="toggleAjuste('Push', this.checked)">
+                </div>
+
+                <div class="config-item">
+                    <label id="txtPublico">Perfil Público</label>
+                    <input type="checkbox" checked onchange="toggleAjuste('Privacidad', this.checked)">
+                </div>
+
+                <div class="config-item">
+                    <label id="txtContraste">Alto Contraste</label>
+                    <input type="checkbox" onchange="toggleAltoContraste(this.checked)">
+                </div>
+
+                <div class="config-item">
+                    <label id="txtSync">Sync Automática</label>
+                    <input type="checkbox" checked onchange="toggleAjuste('Sync', this.checked)">
+                </div>
+
+                <div class="config-item">
+                    <label id="txtFuente">Tamaño de Letra</label>
+                    <select onchange="cambiarFuente(this.value)">
+                        <option id="optNormal" value="16px">Normal</option>
+                        <option id="optGrande" value="18px">Grande</option>
+                        <option id="optXGrande" value="20px">Muy Grande</option>
+                    </select>
+                </div>
+                
+                <div class="config-item">
+                    <label id="txtSeguridad">Seguridad</label>
+                    <button id="btnClave" class="btn-secondary" style="width: auto; padding: 0.4rem 0.8rem;" onclick="cambiarClave()">Cambiar Clave</button>
+                </div>
+
+                <div class="config-item">
+                    <label id="txtAlmacenamiento">Almacenamiento</label>
+                    <button id="btnCache" class="btn-secondary" style="width: auto; padding: 0.4rem 0.8rem; background: var(--accent);" onclick="borrarCache()">Borrar Caché</button>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a id="linkVolver" href="perfil-usuario.html" class="btn-cta">← Volver a Mi Perfil</a>
+            </div>
+        </main>
+
+        <footer><iframe height="280" class="site-footer-frame" src="footer.html" frameborder="0" scrolling="no"></iframe></footer>
+        <script src="js/configuration.js"></script>
+
+    <script src="js/global.js"></script>
+    </body>
+</html>
